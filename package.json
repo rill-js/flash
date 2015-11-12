@@ -1,10 +1,9 @@
 {
   "name": "@rill/flash",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Flash messages between requests for Rill.",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
-  "main": "server/index.js",
-  "browser": "client/index.js",
+  "main": "index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
