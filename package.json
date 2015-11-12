@@ -1,0 +1,33 @@
+{
+  "name": "@rill/flash",
+  "version": "0.1.0",
+  "description": "Flash messages between requests for Rill.",
+  "author": "Dylan Piercey <pierceydylan@gmail.com>",
+  "main": "server/index.js",
+  "browser": "client/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rill-js/flash"
+  },
+  "keywords": [
+    "universal",
+    "isomorphic",
+    "flash",
+    "message",
+    "session",
+    "render",
+    "rill"
+  ],
+  "devDependencies": {
+    "@rill/session": "^0.8.0",
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.1.3",
+    "rill": "^0.1.3",
+    "supertest": "^1.1.0"
+  },
+  "dependencies": {
+    "@rill/session": "^0.8.1",
+    "statuses": "^1.2.1"
+  }
+}
