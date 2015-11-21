@@ -1,6 +1,6 @@
 {
   "name": "@rill/flash",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Flash messages between requests for Rill.",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
   "main": "index.js",
@@ -19,14 +19,16 @@
     "rill"
   ],
   "devDependencies": {
-    "@rill/session": "^0.8.0",
+    "@rill/session": "^1.0.1",
     "gulp": "^3.9.0",
     "gulp-mocha": "^2.1.3",
-    "rill": "^0.1.3",
+    "rill": "^0.1.93",
     "supertest": "^1.1.0"
   },
+  "peerDependencies": {
+    "@rill/session": "1.x"
+  },
   "dependencies": {
-    "@rill/session": "^0.8.1",
     "statuses": "^1.2.1"
   }
 }
