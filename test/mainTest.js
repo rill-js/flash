@@ -17,7 +17,7 @@ describe("Rill/Flash", function () {
 				.get("/session", respond(200, function (ctx) {
 					// Allow for persisting cookies.
 					assert.deepEqual(ctx.flash(), {});
-					ctx.res.body = ctx.req.session.id;
+					ctx.res.body = ctx.session.id;
 				}))
 				.post("/error", respond(200, function (ctx) {
 					ctx.flash("Error", "Not logged in.");

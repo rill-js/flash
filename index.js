@@ -11,9 +11,8 @@ module.exports = function (opts) {
 	var namespace = "key" in opts ? opts.key : "__rill_flash"
 
 	return function flash (ctx, next) {
-		var req     = ctx.req;
 		var res     = ctx.res;
-		var session = req.session;
+		var session = ctx.session;
 
 		if (!session) throw new Error("@rill/flash requires a session to work. Check out @rill/session.");
 
@@ -34,7 +33,7 @@ module.exports = function (opts) {
 		return next().then(function () {
 			// Persist flashes on redirect.
 			if (statuses.redirect[res.status] || res.get("Location")) {
-				req.session.set(namespace, ctx.locals.flash);
+				session.set(namespace, ctx.locals.flash);
 			}
 		})
 	}
