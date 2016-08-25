@@ -1,34 +1,51 @@
 {
   "name": "@rill/flash",
-  "version": "0.3.0",
   "description": "Flash messages between requests for Rill.",
+  "version": "1.4.0",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
-  "main": "index.js",
+  "bugs": "https://github.com/rill-js/flash/issues",
+  "dependencies": {
+    "statuses": "^1.3.0"
+  },
+  "devDependencies": {
+    "@rill/session": "^5.0.2",
+    "mocha": "^3.0.2",
+    "rill": "^0.8.10",
+    "snazzy": "^4.0.1",
+    "standard": "^8.0.0",
+    "supertest": "^2.0.0"
+  },
+  "homepage": "https://github.com/rill-js/flash",
+  "keywords": [
+    "flash",
+    "isomorphic",
+    "message",
+    "render",
+    "rill",
+    "session",
+    "universal"
+  ],
   "license": "MIT",
+  "main": "index.js",
+  "peerDependencies": {
+    "@rill/session": "1.x"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/rill-js/flash"
   },
-  "keywords": [
-    "universal",
-    "isomorphic",
-    "flash",
-    "message",
-    "session",
-    "render",
-    "rill"
-  ],
-  "devDependencies": {
-    "@rill/session": "^1.1.1",
-    "gulp": "^3.9.0",
-    "gulp-mocha": "^2.1.3",
-    "rill": "^0.1.93",
-    "supertest": "^1.1.0"
+  "scripts": {
+    "lint": "standard --verbose | snazzy",
+    "test": "npm run lint && mocha ./test/**/*.test.js"
   },
-  "peerDependencies": {
-    "@rill/session": "1.x"
-  },
-  "dependencies": {
-    "statuses": "^1.2.1"
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach"
+    ]
   }
 }
