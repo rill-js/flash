@@ -28,7 +28,7 @@
   "license": "MIT",
   "main": "index.js",
   "peerDependencies": {
-    "@rill/session": "1.x"
+    "@rill/session": "*"
   },
   "repository": {
     "type": "git",
