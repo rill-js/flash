@@ -2,7 +2,7 @@
   <!-- Logo -->
   <img src="https://raw.githubusercontent.com/rill-js/rill/master/Rill-Icon.jpg" alt="Rill"/>
   <br/>
-  @rill/auth
+  @rill/flash
 	<br/>
 
   <!-- Stability -->
@@ -14,12 +14,12 @@
     <img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square" alt="Standard"/>
   </a>
   <!-- NPM version -->
-  <a href="https://npmjs.org/package/@rill/auth">
-    <img src="https://img.shields.io/npm/v/@rill/auth.svg?style=flat-square" alt="NPM version"/>
+  <a href="https://npmjs.org/package/@rill/flash">
+    <img src="https://img.shields.io/npm/v/@rill/flash.svg?style=flat-square" alt="NPM version"/>
   </a>
   <!-- Downloads -->
-  <a href="https://npmjs.org/package/@rill/auth">
-    <img src="https://img.shields.io/npm/dm/@rill/auth.svg?style=flat-square" alt="Downloads"/>
+  <a href="https://npmjs.org/package/@rill/flash">
+    <img src="https://img.shields.io/npm/dm/@rill/flash.svg?style=flat-square" alt="Downloads"/>
   </a>
   <!-- Gitter Chat -->
   <a href="https://gitter.im/rill-js/rill">
@@ -33,7 +33,6 @@ If the request is redirected the flashed message will be saved again.
 
 # Installation
 
-#### Npm
 ```console
 npm install @rill/flash
 ```
