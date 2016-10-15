@@ -15,8 +15,7 @@ module.exports = function flashSetup (opts) {
     var session = ctx.session
     if (!session) throw new Error('@rill/flash requires a session to work. Check out @rill/session.')
 
-    // We store flash messages in locals.
-    // This allows them to be easily accessable in any view rendering middleware.
+    // Pull flash values from session.
     var values = session.get(namespace)
     if (!values) session.set(namespace, values = {})
 
@@ -37,6 +36,7 @@ module.exports = function flashSetup (opts) {
       }
     }
 
+    // Run next middleware
     return next()
   }
 }
