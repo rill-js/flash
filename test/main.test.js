@@ -30,7 +30,7 @@ describe('Rill/Flash', function () {
         request
           .get('/')
           .expect(200, { Error: 'Not logged in.' })
-          .end(function (err) {
+          .end(function (err, res) {
             if (err) return done(err)
 
             request
