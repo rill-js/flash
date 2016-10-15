@@ -8,7 +8,7 @@ var statuses = require('statuses')
  * @param {Object} opts
  * @return {Function}
  */
-module.exports = function (opts) {
+module.exports = function flashSetup (opts) {
   opts = opts || {}
   var namespace = 'key' in opts ? opts.key : '__rill_flash'
 
@@ -25,8 +25,20 @@ module.exports = function (opts) {
     locals.flash = session.get(namespace) || {}
     session.delete(namespace)
 
-    // Attach flash method to context.
-    ctx.flash = flash
+    /**
+      * Flashes a value (using sessions) for the current request to the next one.
+      */
+    ctx.flash = function flash (key, val) {
+      var locals = this.locals
+      var session = this.session
+
+      if (arguments.length === 0) return locals.flash
+      else if (arguments.length === 1) return locals.flash[key]
+      else {
+        if (!session.has(namespace)) session.set(namespace, locals.flash = {})
+        locals.flash[key] = val
+      }
+    }
 
     return next().then(function () {
       // Persist flashes on redirect.
@@ -34,20 +46,5 @@ module.exports = function (opts) {
         session.set(namespace, locals.flash)
       }
     })
-  }
-
-  /**
-   * Flashes a value (using sessions) for the current request to the next one.
-   */
-  function flash (key, val) {
-    var locals = this.locals
-    var session = this.session
-
-    if (arguments.length === 0) return locals.flash
-    else if (arguments.length === 1) return locals.flash[key]
-    else {
-      if (!session.has(namespace)) session.set(namespace, locals.flash = {})
-      locals.flash[key] = val
-    }
   }
 }
