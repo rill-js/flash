@@ -12,7 +12,7 @@ describe('Rill/Flash', function () {
         .use(session())
         .use(flashMiddleware())
         .get('/', respond(200, function (ctx) {
-          ctx.res.body = ctx.flash()
+          ctx.res.body = ctx.flash('Error')
         }))
         .post('/error', respond(200, function (ctx) {
           ctx.flash('Error', 'Not logged in.')
@@ -29,13 +29,13 @@ describe('Rill/Flash', function () {
 
         request
           .get('/')
-          .expect(200, { Error: 'Not logged in.' })
+          .expect(200, 'Not logged in.')
           .end(function (err, res) {
             if (err) return done(err)
 
             request
               .get('/')
-              .expect(200, {})
+              .expect(200, '')
               .end(done)
           })
       })

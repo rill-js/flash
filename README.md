@@ -28,8 +28,9 @@
 </h1>
 
 Flash messages between requests for your Rill application.
-A flashed message will persist for one more request from the same session.
-If the request is redirected the flashed message will be saved again.
+
+A flashed message will persist through multiple requests until it is read.
+After a flashed message has been read it will be deleted.
 
 # Installation
 
@@ -55,6 +56,7 @@ app.use(({ req, res, flash })=> {
 		// and wait to retrieve the flashed message (usually rendering a view).
 		flash("error", "This is a flash error message.")
 	} else {
+    // After we read the 'error' flash it is marked to be removed after the request is finished.
 		res.body = flash("error") || "No flash message"
 	}
 })
@@ -64,11 +66,7 @@ app.use(({ req, res, flash })=> {
 
 **ctx.flash(key, value)** - Sets a value to be flashed.
 
-**ctx.flash(key)** - Retrieves a flashed value.
-
-**ctx.flash()** - Retrieve all flashed values.
-
-**ctx.locals.flash** - A store of all flashed values for the request.
+**ctx.flash(key)** - Retrieves a flashed value. (Marks a key as expired and removes it after the request)
 
 
 ### Contributions
