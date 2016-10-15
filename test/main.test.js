@@ -1,25 +1,18 @@
 'use strict'
 
-var assert = require('assert')
-var agent = require('supertest')
+var agent = require('supertest').agent
 var Rill = require('rill')
 var session = require('@rill/session')
 var flashMiddleware = require('../')
-var sessionKey = 'rill_session'
 
 describe('Rill/Flash', function () {
   it('should work on the server', function (done) {
     var request = agent(
       Rill()
-        .use(session({ key: sessionKey }))
+        .use(session())
         .use(flashMiddleware())
         .get('/', respond(200, function (ctx) {
           ctx.res.body = ctx.flash()
-        }))
-        .get('/session', respond(200, function (ctx) {
-          // Allow for persisting cookies.
-          assert.deepEqual(ctx.flash(), {})
-          ctx.res.body = String(ctx.session.id)
         }))
         .post('/error', respond(200, function (ctx) {
           ctx.flash('Error', 'Not logged in.')
@@ -29,31 +22,21 @@ describe('Rill/Flash', function () {
     )
 
     request
-      .get('/session')
-      // .expect(200)
-      .end(function (err, res) {
+      .post('/error')
+      .expect(200)
+      .end(function (err) {
         if (err) return done(err)
-        var sessionCookie = sessionKey + '=' + res.text
 
         request
-          .post('/error')
-          .set('cookie', sessionCookie)
-          .expect(200)
+          .get('/')
+          .expect(200, { Error: 'Not logged in.' })
           .end(function (err) {
             if (err) return done(err)
+
             request
               .get('/')
-              .set('cookie', sessionCookie)
-              .expect(200, { Error: 'Not logged in.' })
-              .end(function (err) {
-                if (err) return done(err)
-
-                request
-                  .get('/')
-                  .set('cookie', sessionCookie)
-                  .expect(200, {})
-                  .end(done)
-              })
+              .expect(200, {})
+              .end(done)
           })
       })
   })
