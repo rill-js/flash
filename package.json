@@ -1,7 +1,7 @@
 {
   "name": "@rill/flash",
   "description": "Flash messages between requests for Rill.",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
   "bugs": "https://github.com/rill-js/flash/issues",
   "dependencies": {
