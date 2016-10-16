@@ -68,6 +68,10 @@ app.use(({ req, res, flash })=> {
 
 **ctx.flash(key)** - Retrieves a flashed value. (Marks a key as expired and removes it after the request)
 
+### Server Side rendering
+To help with browser bootstrapping (when using server side rendering) @rill/flash will return the most recent expired flash message on the first request when running in the browser.
+
+This means that if the server renders a page with one flash message, then the browser tries to display that same message when it bootstraps on page load, both the server and the browser will have the same message.
 
 ### Contributions
 
