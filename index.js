@@ -15,10 +15,6 @@ module.exports = function flashSetup (opts) {
     var session = ctx.session
     if (!session) throw new Error('@rill/flash requires a session to work. Check out @rill/session.')
 
-    // Pull flash values from session.
-    var values = session.get(namespace)
-    if (!values) session.set(namespace, values = {})
-
     /**
       * Flashes a value (using sessions) for the current request to the next one.
       */
@@ -27,12 +23,14 @@ module.exports = function flashSetup (opts) {
         throw new TypeError('@rill/flash: Key must be a string.')
       }
 
+      key = namespace + '_' + key
+
       if (arguments.length === 1) {
-        var result = values[key]
-        delete values[key]
+        var result = session.get(key)
+        session.delete(key)
         return result
       } else {
-        values[key] = val
+        session.set(key, val)
       }
     }
 
