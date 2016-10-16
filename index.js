@@ -60,6 +60,8 @@ module.exports = function flashSetup (opts) {
       } else {
         // Handle flash 'set'
         session.set(activeKey, val)
+        // Ensure server side initial cache is cleared on sets.
+        if (!process.browser) session.delete(initialKey)
       }
     }
 
